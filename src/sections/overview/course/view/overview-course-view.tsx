@@ -51,11 +51,11 @@ export function OverviewCourseView() {
         >
           <Box sx={{ mb: 2 }}>
             <Typography variant="h4" sx={{ mb: 1 }}>
-              Hi, Frankie 👋
+             欢迎学习 👋
             </Typography>
             <Typography
               sx={{ color: 'text.secondary' }}
-            >{`Let's learn something new today!`}</Typography>
+            >{`课程学习计划`}</Typography>
           </Box>
 
           <Box
@@ -66,33 +66,33 @@ export function OverviewCourseView() {
             }}
           >
             <CourseWidgetSummary
-              title="Courses in progress"
-              total={6}
+              title="学习的课程"
+              total={1}
               icon={`${CONFIG.assetsDir}/assets/icons/courses/ic-courses-progress.svg`}
             />
 
             <CourseWidgetSummary
-              title="Courses completed"
-              total={3}
+              title="完成的课程"
+              total={1}
               color="success"
               icon={`${CONFIG.assetsDir}/assets/icons/courses/ic-courses-completed.svg`}
             />
 
             <CourseWidgetSummary
-              title="Certificates"
-              total={2}
+              title="参与的课程图谱"
+              total={1}
               color="secondary"
               icon={`${CONFIG.assetsDir}/assets/icons/courses/ic-courses-certificates.svg`}
             />
           </Box>
 
           <CourseHoursSpent
-            title="Hours spent"
+            title="时间花费"
             chart={{
               series: [
                 {
-                  name: 'Weekly',
-                  categories: ['Week 1', 'Week 2', 'Week 3', 'Week 4', 'Week 5'],
+                  name: '周',
+                  categories: ['第一周', '第二周', '第三周', '第四周', '第五周'],
                   data: [{ data: [10, 41, 35, 151, 49] }],
                 },
                 {
@@ -118,7 +118,7 @@ export function OverviewCourseView() {
             }}
           >
             <CourseProgress
-              title="Course progress"
+              title="课程进度"
               chart={{
                 series: [
                   { label: 'To start', value: 45 },
@@ -128,10 +128,10 @@ export function OverviewCourseView() {
               }}
             />
 
-            <CourseContinue title="Continue course" list={_coursesContinue} />
+            <CourseContinue title="学习课程" list={_coursesContinue} />
           </Box>
 
-          <CourseFeatured title="Featured course" list={_coursesFeatured} />
+          <CourseFeatured title="特色课程" list={_coursesFeatured} />
         </Box>
 
         <Box
@@ -156,14 +156,14 @@ export function OverviewCourseView() {
           <CourseMyAccount />
 
           <CourseMyStrength
-            title="Strength"
+            title="学生能力"
             chart={{
-              categories: ['English', 'History', 'Physics', 'Geography', 'Chinese', 'Math'],
+              categories: ['能力1', '能力2', '能力3', '能力4', '能力5', '能力6'],
               series: [{ data: [80, 50, 30, 40, 100, 20] }],
             }}
           />
 
-          <CourseReminders title="Reminders" list={_coursesReminder} />
+          <CourseReminders title="课程计划" list={_coursesReminder} />
         </Box>
       </Box>
     </DashboardContent>

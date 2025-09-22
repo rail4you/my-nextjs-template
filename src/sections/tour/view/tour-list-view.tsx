@@ -23,10 +23,14 @@ import { EmptyContent } from 'src/components/empty-content';
 import { CustomBreadcrumbs } from 'src/components/custom-breadcrumbs';
 
 import { TourList } from '../tour-list';
+import { CourseList } from '../course-list';
 import { TourSort } from '../tour-sort';
 import { TourSearch } from '../tour-search';
 import { TourFilters } from '../tour-filters';
 import { TourFiltersResult } from '../tour-filters-result';
+import { listCourses, createCourse, buildCSRFHeaders } from 'src/lib/ash_rpc'
+import { co } from 'node_modules/@fullcalendar/core/internal-common';
+import { CourseListView } from './course-list-view';
 
 // ----------------------------------------------------------------------
 
@@ -52,6 +56,8 @@ export function TourListView() {
     sortBy,
     dateError,
   });
+
+
 
   const canReset =
     currentFilters.destination.length > 0 ||
@@ -128,8 +134,8 @@ export function TourListView() {
       </Stack>
 
       {notFound && <EmptyContent filled sx={{ py: 10 }} />}
-
-      <TourList tours={dataFiltered} />
+      {<CourseListView />}
+      {/* <TourList tours={dataFiltered} /> */}
     </DashboardContent>
   );
 }

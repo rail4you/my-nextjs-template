@@ -77,11 +77,12 @@ function Item({ item, sx, ...other }: ItemProps) {
         }}
       >
         <Link color="inherit" noWrap sx={{ mb: 0.5, typography: 'subtitle2' }}>
-          {item.title}
+          python编程语言与应用
+          {/* {item.title} */}
         </Link>
 
         <Box component="span" sx={{ color: 'text.secondary', typography: 'caption' }}>
-          Lessons: {item.currentLesson}/{item.totalLesson}
+          课程章节: {item.currentLesson}/{item.totalLesson}
         </Box>
 
         <Box sx={{ gap: 2, width: 1, display: 'flex', alignItems: 'center' }}>

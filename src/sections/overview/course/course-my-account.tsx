@@ -35,7 +35,8 @@ export function CourseMyAccount({ sx, ...other }: CardProps) {
         {renderAvatar()}
 
         <Typography variant="subtitle1" noWrap sx={{ mb: 0.5 }}>
-          {user?.displayName}
+          张小明
+          {/* {user?.displayName} */}
         </Typography>
 
         <Box

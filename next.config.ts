@@ -18,10 +18,45 @@ const isStaticExport = false;
 // ----------------------------------------------------------------------
 
 const nextConfig: NextConfig = {
-  trailingSlash: true,
+  trailingSlash: false,
+  skipMiddlewareUrlNormalize: true,
+  // trailingSlash: true,
   output: isStaticExport ? 'export' : undefined,
   env: {
     BUILD_STATIC_EXPORT: JSON.stringify(isStaticExport),
+  },
+  async rewrites() {
+    return [
+      {
+        source: '/rpc/run',
+        destination: 'http://localhost:4000/rpc/run',
+      },
+    ];
+  },
+  async headers() {
+    return [
+      {
+        source: '/rpc/run',
+        headers: [
+          {
+            key: 'Access-Control-Allow-Origin',
+            value: '*',
+          },
+          {
+            key: 'Access-Control-Allow-Methods',
+            value: 'GET, POST, PUT, DELETE, PATCH, OPTIONS',
+          },
+          {
+            key: 'Access-Control-Allow-Headers',
+            value: 'Content-Type, Authorization, X-Requested-With, Accept, Origin, User-Agent, DNT, Cache-Control, X-Mx-ReqToken, Keep-Alive, X-Requested-With, If-Modified-Since',
+          },
+          {
+            key: 'Access-Control-Max-Age',
+            value: '86400',
+          },
+        ],
+      },
+    ];
   },
   // Without --turbopack (next dev)
   webpack(config) {

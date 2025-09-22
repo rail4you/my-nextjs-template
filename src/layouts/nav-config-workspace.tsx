@@ -7,8 +7,8 @@ import { CONFIG } from 'src/global-config';
 export const _workspaces: WorkspacesPopoverProps['data'] = [
   {
     id: 'team-1',
-    name: 'Team 1',
-    plan: 'Free',
+    name: '组织1',
+    plan: '',
     logo: `${CONFIG.assetsDir}/assets/icons/workspaces/logo-1.webp`,
   },
   {

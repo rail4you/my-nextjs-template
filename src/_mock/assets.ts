@@ -533,8 +533,8 @@ export const _taskNames = [
 // ----------------------------------------------------------------------
 
 export const _courseNames = [
-  `Introduction to Python Programming`,
-  `Digital Marketing Fundamentals`,
+  `Python编程语言与应用`,
+  `Python数据分析与可视化`,
   `Data Science with R`,
   `Graphic Design Essentials`,
   `Financial Planning for Beginners`,
