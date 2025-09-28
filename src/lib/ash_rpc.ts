@@ -5,6 +5,19 @@
 
 export type UUID = string;
 
+// KgEduAccountsUser Schema
+export type KgEduAccountsUserResourceSchema = {
+  __type: "Resource";
+  __primitiveFields: "id" | "memberId" | "name" | "email" | "role";
+  id: UUID;
+  memberId: string;
+  name: string | null;
+  email: string | null;
+  role: "admin" | "user" | "teacher";
+};
+
+
+
 // KgEduCoursesCourse Schema
 export type KgEduCoursesCourseResourceSchema = {
   __type: "Resource";
@@ -24,6 +37,44 @@ export type KgEduCoursesCourseResourceSchema = {
 
 
 
+export type KgEduAccountsUserFilterInput = {
+  and?: Array<KgEduAccountsUserFilterInput>;
+  or?: Array<KgEduAccountsUserFilterInput>;
+  not?: Array<KgEduAccountsUserFilterInput>;
+
+  id?: {
+    eq?: UUID;
+    notEq?: UUID;
+    in?: Array<UUID>;
+  };
+
+  memberId?: {
+    eq?: string;
+    notEq?: string;
+    in?: Array<string>;
+  };
+
+  name?: {
+    eq?: string;
+    notEq?: string;
+    in?: Array<string>;
+  };
+
+  email?: {
+    eq?: string;
+    notEq?: string;
+    in?: Array<string>;
+  };
+
+  role?: {
+    eq?: "admin" | "user" | "teacher";
+    notEq?: "admin" | "user" | "teacher";
+    in?: Array<"admin" | "user" | "teacher">;
+  };
+
+
+
+};
 export type KgEduCoursesCourseFilterInput = {
   and?: Array<KgEduCoursesCourseFilterInput>;
   or?: Array<KgEduCoursesCourseFilterInput>;
@@ -229,6 +280,1203 @@ export function buildCSRFHeaders(headers: Record<string, string> = {}): Record<s
 
 
 
+
+
+export type SignInInput = {
+  memberId: string;
+  password: string;
+};
+
+export type SignInValidationErrors = {
+  memberId?: string[];
+  password?: string[];
+};
+
+export type SignInFields = UnifiedFieldSelection<KgEduAccountsUserResourceSchema>[];
+
+type InferSignInResult<
+  Fields extends SignInFields,
+> = InferResult<KgEduAccountsUserResourceSchema, Fields> | null;
+
+export type SignInResult<Fields extends SignInFields> = | { success: true; data: InferSignInResult<Fields> }
+| {
+    success: false;
+    errors: Array<{
+      type: string;
+      message: string;
+      fieldPath?: string;
+      details: Record<string, string>;
+    }>;
+  }
+;
+
+export async function signIn<Fields extends SignInFields>(
+  config: {
+  input: SignInInput;
+  fields: Fields;
+  headers?: Record<string, string>;
+  fetchOptions?: RequestInit;
+  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+}
+): Promise<SignInResult<Fields>> {
+  const payload = {
+    action: "sign_in",
+    input: config.input,
+    fields: config.fields
+  };
+
+  const headers: Record<string, string> = {
+    "Content-Type": "application/json",
+    ...config.headers,
+  };
+
+  const fetchFunction = config.customFetch || fetch;
+  const fetchOptions: RequestInit = {
+    ...config.fetchOptions,
+    method: "POST",
+    headers,
+    body: JSON.stringify(payload),
+  };
+
+  const response = await fetchFunction("/rpc/run", fetchOptions);
+
+  if (!response.ok) {
+    return {
+      success: false,
+      errors: [{ type: "network", message: response.statusText, details: {} }],
+    };
+  }
+
+  const result = await response.json();
+  return result as SignInResult<Fields>;
+}
+
+
+export type ValidateSignInResult =
+  | { success: true }
+  | {
+      success: false;
+      errors: Array<{
+        type: string;
+        message: string;
+        field?: string;
+        fieldPath?: string;
+        details?: Record<string, any>;
+      }>;
+    };
+
+
+export async function validateSignIn(
+  config: {
+  input: SignInInput;
+  headers?: Record<string, string>;
+  fetchOptions?: RequestInit;
+  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+}
+): Promise<ValidateSignInResult> {
+  const payload = {
+    action: "sign_in",
+    input: config.input
+  };
+
+  const headers: Record<string, string> = {
+    "Content-Type": "application/json",
+    ...config.headers,
+  };
+
+  const fetchFunction = config.customFetch || fetch;
+  const fetchOptions: RequestInit = {
+    ...config.fetchOptions,
+    method: "POST",
+    headers,
+    body: JSON.stringify(payload),
+  };
+
+  const response = await fetchFunction("/rpc/validate", fetchOptions);
+
+  if (!response.ok) {
+    return {
+      success: false,
+      errors: [{ type: "network", message: response.statusText }],
+    };
+  }
+
+  const result = await response.json();
+  return result as ValidateSignInResult;
+}
+
+
+export type RegisterInput = {
+  memberId: string;
+  password: string;
+  passwordConfirmation: string;
+  role?: "admin" | "user" | "teacher";
+};
+
+export type RegisterValidationErrors = {
+  memberId?: string[];
+  password?: string[];
+  passwordConfirmation?: string[];
+  role?: string[];
+};
+
+export type RegisterFields = UnifiedFieldSelection<KgEduAccountsUserResourceSchema>[];
+
+type InferRegisterResult<
+  Fields extends RegisterFields,
+> = InferResult<KgEduAccountsUserResourceSchema, Fields>;
+
+export type RegisterResult<Fields extends RegisterFields> = | { success: true; data: InferRegisterResult<Fields> }
+| {
+    success: false;
+    errors: Array<{
+      type: string;
+      message: string;
+      fieldPath?: string;
+      details: Record<string, string>;
+    }>;
+  }
+;
+
+export async function register<Fields extends RegisterFields>(
+  config: {
+  input: RegisterInput;
+  fields: Fields;
+  headers?: Record<string, string>;
+  fetchOptions?: RequestInit;
+  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+}
+): Promise<RegisterResult<Fields>> {
+  const payload = {
+    action: "register",
+    input: config.input,
+    fields: config.fields
+  };
+
+  const headers: Record<string, string> = {
+    "Content-Type": "application/json",
+    ...config.headers,
+  };
+
+  const fetchFunction = config.customFetch || fetch;
+  const fetchOptions: RequestInit = {
+    ...config.fetchOptions,
+    method: "POST",
+    headers,
+    body: JSON.stringify(payload),
+  };
+
+  const response = await fetchFunction("/rpc/run", fetchOptions);
+
+  if (!response.ok) {
+    return {
+      success: false,
+      errors: [{ type: "network", message: response.statusText, details: {} }],
+    };
+  }
+
+  const result = await response.json();
+  return result as RegisterResult<Fields>;
+}
+
+
+export type ValidateRegisterResult =
+  | { success: true }
+  | {
+      success: false;
+      errors: Array<{
+        type: string;
+        message: string;
+        field?: string;
+        fieldPath?: string;
+        details?: Record<string, any>;
+      }>;
+    };
+
+
+export async function validateRegister(
+  config: {
+  input: RegisterInput;
+  headers?: Record<string, string>;
+  fetchOptions?: RequestInit;
+  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+}
+): Promise<ValidateRegisterResult> {
+  const payload = {
+    action: "register",
+    input: config.input
+  };
+
+  const headers: Record<string, string> = {
+    "Content-Type": "application/json",
+    ...config.headers,
+  };
+
+  const fetchFunction = config.customFetch || fetch;
+  const fetchOptions: RequestInit = {
+    ...config.fetchOptions,
+    method: "POST",
+    headers,
+    body: JSON.stringify(payload),
+  };
+
+  const response = await fetchFunction("/rpc/validate", fetchOptions);
+
+  if (!response.ok) {
+    return {
+      success: false,
+      errors: [{ type: "network", message: response.statusText }],
+    };
+  }
+
+  const result = await response.json();
+  return result as ValidateRegisterResult;
+}
+
+
+export type ResetPasswordInput = {
+  resetToken: string;
+  password: string;
+  passwordConfirmation: string;
+};
+
+export type ResetPasswordValidationErrors = {
+  resetToken?: string[];
+  password?: string[];
+  passwordConfirmation?: string[];
+};
+
+export type ResetPasswordFields = UnifiedFieldSelection<KgEduAccountsUserResourceSchema>[];
+
+type InferResetPasswordResult<
+  Fields extends ResetPasswordFields,
+> = InferResult<KgEduAccountsUserResourceSchema, Fields>;
+
+export type ResetPasswordResult<Fields extends ResetPasswordFields> = | { success: true; data: InferResetPasswordResult<Fields> }
+| {
+    success: false;
+    errors: Array<{
+      type: string;
+      message: string;
+      fieldPath?: string;
+      details: Record<string, string>;
+    }>;
+  }
+;
+
+export async function resetPassword<Fields extends ResetPasswordFields>(
+  config: {
+  primaryKey: UUID;
+  input: ResetPasswordInput;
+  fields: Fields;
+  headers?: Record<string, string>;
+  fetchOptions?: RequestInit;
+  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+}
+): Promise<ResetPasswordResult<Fields>> {
+  const payload = {
+    action: "reset_password",
+    primaryKey: config.primaryKey,
+    input: config.input,
+    fields: config.fields
+  };
+
+  const headers: Record<string, string> = {
+    "Content-Type": "application/json",
+    ...config.headers,
+  };
+
+  const fetchFunction = config.customFetch || fetch;
+  const fetchOptions: RequestInit = {
+    ...config.fetchOptions,
+    method: "POST",
+    headers,
+    body: JSON.stringify(payload),
+  };
+
+  const response = await fetchFunction("/rpc/run", fetchOptions);
+
+  if (!response.ok) {
+    return {
+      success: false,
+      errors: [{ type: "network", message: response.statusText, details: {} }],
+    };
+  }
+
+  const result = await response.json();
+  return result as ResetPasswordResult<Fields>;
+}
+
+
+export type ValidateResetPasswordResult =
+  | { success: true }
+  | {
+      success: false;
+      errors: Array<{
+        type: string;
+        message: string;
+        field?: string;
+        fieldPath?: string;
+        details?: Record<string, any>;
+      }>;
+    };
+
+
+export async function validateResetPassword(
+  config: {
+  primaryKey: string;
+  input: ResetPasswordInput;
+  headers?: Record<string, string>;
+  fetchOptions?: RequestInit;
+  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+}
+): Promise<ValidateResetPasswordResult> {
+  const payload = {
+    action: "reset_password",
+    primaryKey: config.primaryKey,
+    input: config.input
+  };
+
+  const headers: Record<string, string> = {
+    "Content-Type": "application/json",
+    ...config.headers,
+  };
+
+  const fetchFunction = config.customFetch || fetch;
+  const fetchOptions: RequestInit = {
+    ...config.fetchOptions,
+    method: "POST",
+    headers,
+    body: JSON.stringify(payload),
+  };
+
+  const response = await fetchFunction("/rpc/validate", fetchOptions);
+
+  if (!response.ok) {
+    return {
+      success: false,
+      errors: [{ type: "network", message: response.statusText }],
+    };
+  }
+
+  const result = await response.json();
+  return result as ValidateResetPasswordResult;
+}
+
+
+export type ChangePasswordInput = {
+  currentPassword: string;
+  password: string;
+  passwordConfirmation: string;
+};
+
+export type ChangePasswordValidationErrors = {
+  currentPassword?: string[];
+  password?: string[];
+  passwordConfirmation?: string[];
+};
+
+export type ChangePasswordFields = UnifiedFieldSelection<KgEduAccountsUserResourceSchema>[];
+
+type InferChangePasswordResult<
+  Fields extends ChangePasswordFields,
+> = InferResult<KgEduAccountsUserResourceSchema, Fields>;
+
+export type ChangePasswordResult<Fields extends ChangePasswordFields> = | { success: true; data: InferChangePasswordResult<Fields> }
+| {
+    success: false;
+    errors: Array<{
+      type: string;
+      message: string;
+      fieldPath?: string;
+      details: Record<string, string>;
+    }>;
+  }
+;
+
+export async function changePassword<Fields extends ChangePasswordFields>(
+  config: {
+  primaryKey: UUID;
+  input: ChangePasswordInput;
+  fields: Fields;
+  headers?: Record<string, string>;
+  fetchOptions?: RequestInit;
+  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+}
+): Promise<ChangePasswordResult<Fields>> {
+  const payload = {
+    action: "change_password",
+    primaryKey: config.primaryKey,
+    input: config.input,
+    fields: config.fields
+  };
+
+  const headers: Record<string, string> = {
+    "Content-Type": "application/json",
+    ...config.headers,
+  };
+
+  const fetchFunction = config.customFetch || fetch;
+  const fetchOptions: RequestInit = {
+    ...config.fetchOptions,
+    method: "POST",
+    headers,
+    body: JSON.stringify(payload),
+  };
+
+  const response = await fetchFunction("/rpc/run", fetchOptions);
+
+  if (!response.ok) {
+    return {
+      success: false,
+      errors: [{ type: "network", message: response.statusText, details: {} }],
+    };
+  }
+
+  const result = await response.json();
+  return result as ChangePasswordResult<Fields>;
+}
+
+
+export type ValidateChangePasswordResult =
+  | { success: true }
+  | {
+      success: false;
+      errors: Array<{
+        type: string;
+        message: string;
+        field?: string;
+        fieldPath?: string;
+        details?: Record<string, any>;
+      }>;
+    };
+
+
+export async function validateChangePassword(
+  config: {
+  primaryKey: string;
+  input: ChangePasswordInput;
+  headers?: Record<string, string>;
+  fetchOptions?: RequestInit;
+  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+}
+): Promise<ValidateChangePasswordResult> {
+  const payload = {
+    action: "change_password",
+    primaryKey: config.primaryKey,
+    input: config.input
+  };
+
+  const headers: Record<string, string> = {
+    "Content-Type": "application/json",
+    ...config.headers,
+  };
+
+  const fetchFunction = config.customFetch || fetch;
+  const fetchOptions: RequestInit = {
+    ...config.fetchOptions,
+    method: "POST",
+    headers,
+    body: JSON.stringify(payload),
+  };
+
+  const response = await fetchFunction("/rpc/validate", fetchOptions);
+
+  if (!response.ok) {
+    return {
+      success: false,
+      errors: [{ type: "network", message: response.statusText }],
+    };
+  }
+
+  const result = await response.json();
+  return result as ValidateChangePasswordResult;
+}
+
+
+export type GetCurrentUserFields = UnifiedFieldSelection<KgEduAccountsUserResourceSchema>[];
+
+type InferGetCurrentUserResult<
+  Fields extends GetCurrentUserFields,
+> = InferResult<KgEduAccountsUserResourceSchema, Fields> | null;
+
+export type GetCurrentUserResult<Fields extends GetCurrentUserFields> = | { success: true; data: InferGetCurrentUserResult<Fields> }
+| {
+    success: false;
+    errors: Array<{
+      type: string;
+      message: string;
+      fieldPath?: string;
+      details: Record<string, string>;
+    }>;
+  }
+;
+
+export async function getCurrentUser<Fields extends GetCurrentUserFields>(
+  config: {
+  fields: Fields;
+  headers?: Record<string, string>;
+  fetchOptions?: RequestInit;
+  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+}
+): Promise<GetCurrentUserResult<Fields>> {
+  const payload = {
+    action: "get_current_user",
+    fields: config.fields
+  };
+
+  const headers: Record<string, string> = {
+    "Content-Type": "application/json",
+    ...config.headers,
+  };
+
+  const fetchFunction = config.customFetch || fetch;
+  const fetchOptions: RequestInit = {
+    ...config.fetchOptions,
+    method: "POST",
+    headers,
+    body: JSON.stringify(payload),
+  };
+
+  const response = await fetchFunction("/rpc/run", fetchOptions);
+
+  if (!response.ok) {
+    return {
+      success: false,
+      errors: [{ type: "network", message: response.statusText, details: {} }],
+    };
+  }
+
+  const result = await response.json();
+  return result as GetCurrentUserResult<Fields>;
+}
+
+
+export type ValidateGetCurrentUserResult =
+  | { success: true }
+  | {
+      success: false;
+      errors: Array<{
+        type: string;
+        message: string;
+        field?: string;
+        fieldPath?: string;
+        details?: Record<string, any>;
+      }>;
+    };
+
+
+export async function validateGetCurrentUser(
+  config: {
+  headers?: Record<string, string>;
+  fetchOptions?: RequestInit;
+  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+}
+): Promise<ValidateGetCurrentUserResult> {
+  const payload = {
+    action: "get_current_user"
+  };
+
+  const headers: Record<string, string> = {
+    "Content-Type": "application/json",
+    ...config.headers,
+  };
+
+  const fetchFunction = config.customFetch || fetch;
+  const fetchOptions: RequestInit = {
+    ...config.fetchOptions,
+    method: "POST",
+    headers,
+    body: JSON.stringify(payload),
+  };
+
+  const response = await fetchFunction("/rpc/validate", fetchOptions);
+
+  if (!response.ok) {
+    return {
+      success: false,
+      errors: [{ type: "network", message: response.statusText }],
+    };
+  }
+
+  const result = await response.json();
+  return result as ValidateGetCurrentUserResult;
+}
+
+
+export type UpdateUserFields = UnifiedFieldSelection<KgEduAccountsUserResourceSchema>[];
+
+type InferUpdateUserResult<
+  Fields extends UpdateUserFields,
+> = InferResult<KgEduAccountsUserResourceSchema, Fields>;
+
+export type UpdateUserResult<Fields extends UpdateUserFields> = | { success: true; data: InferUpdateUserResult<Fields> }
+| {
+    success: false;
+    errors: Array<{
+      type: string;
+      message: string;
+      fieldPath?: string;
+      details: Record<string, string>;
+    }>;
+  }
+;
+
+export async function updateUser<Fields extends UpdateUserFields>(
+  config: {
+  primaryKey: UUID;
+  fields: Fields;
+  headers?: Record<string, string>;
+  fetchOptions?: RequestInit;
+  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+}
+): Promise<UpdateUserResult<Fields>> {
+  const payload = {
+    action: "update_user",
+    primaryKey: config.primaryKey,
+    fields: config.fields
+  };
+
+  const headers: Record<string, string> = {
+    "Content-Type": "application/json",
+    ...config.headers,
+  };
+
+  const fetchFunction = config.customFetch || fetch;
+  const fetchOptions: RequestInit = {
+    ...config.fetchOptions,
+    method: "POST",
+    headers,
+    body: JSON.stringify(payload),
+  };
+
+  const response = await fetchFunction("/rpc/run", fetchOptions);
+
+  if (!response.ok) {
+    return {
+      success: false,
+      errors: [{ type: "network", message: response.statusText, details: {} }],
+    };
+  }
+
+  const result = await response.json();
+  return result as UpdateUserResult<Fields>;
+}
+
+
+export type ValidateUpdateUserResult =
+  | { success: true }
+  | {
+      success: false;
+      errors: Array<{
+        type: string;
+        message: string;
+        field?: string;
+        fieldPath?: string;
+        details?: Record<string, any>;
+      }>;
+    };
+
+
+export async function validateUpdateUser(
+  config: {
+  primaryKey: string;
+  headers?: Record<string, string>;
+  fetchOptions?: RequestInit;
+  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+}
+): Promise<ValidateUpdateUserResult> {
+  const payload = {
+    action: "update_user",
+    primaryKey: config.primaryKey
+  };
+
+  const headers: Record<string, string> = {
+    "Content-Type": "application/json",
+    ...config.headers,
+  };
+
+  const fetchFunction = config.customFetch || fetch;
+  const fetchOptions: RequestInit = {
+    ...config.fetchOptions,
+    method: "POST",
+    headers,
+    body: JSON.stringify(payload),
+  };
+
+  const response = await fetchFunction("/rpc/validate", fetchOptions);
+
+  if (!response.ok) {
+    return {
+      success: false,
+      errors: [{ type: "network", message: response.statusText }],
+    };
+  }
+
+  const result = await response.json();
+  return result as ValidateUpdateUserResult;
+}
+
+
+
+export type DeleteUserResult = | { success: true; data: {} }
+| {
+    success: false;
+    errors: Array<{
+      type: string;
+      message: string;
+      fieldPath?: string;
+      details: Record<string, string>;
+    }>;
+  }
+;
+
+export async function deleteUser(
+  config: {
+  primaryKey: UUID;
+  headers?: Record<string, string>;
+  fetchOptions?: RequestInit;
+  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+}
+): Promise<DeleteUserResult> {
+  const payload = {
+    action: "delete_user",
+    primaryKey: config.primaryKey
+  };
+
+  const headers: Record<string, string> = {
+    "Content-Type": "application/json",
+    ...config.headers,
+  };
+
+  const fetchFunction = config.customFetch || fetch;
+  const fetchOptions: RequestInit = {
+    ...config.fetchOptions,
+    method: "POST",
+    headers,
+    body: JSON.stringify(payload),
+  };
+
+  const response = await fetchFunction("/rpc/run", fetchOptions);
+
+  if (!response.ok) {
+    return {
+      success: false,
+      errors: [{ type: "network", message: response.statusText, details: {} }],
+    };
+  }
+
+  const result = await response.json();
+  return result as DeleteUserResult;
+}
+
+
+export type ValidateDeleteUserResult =
+  | { success: true }
+  | {
+      success: false;
+      errors: Array<{
+        type: string;
+        message: string;
+        field?: string;
+        fieldPath?: string;
+        details?: Record<string, any>;
+      }>;
+    };
+
+
+export async function validateDeleteUser(
+  config: {
+  primaryKey: string;
+  headers?: Record<string, string>;
+  fetchOptions?: RequestInit;
+  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+}
+): Promise<ValidateDeleteUserResult> {
+  const payload = {
+    action: "delete_user",
+    primaryKey: config.primaryKey
+  };
+
+  const headers: Record<string, string> = {
+    "Content-Type": "application/json",
+    ...config.headers,
+  };
+
+  const fetchFunction = config.customFetch || fetch;
+  const fetchOptions: RequestInit = {
+    ...config.fetchOptions,
+    method: "POST",
+    headers,
+    body: JSON.stringify(payload),
+  };
+
+  const response = await fetchFunction("/rpc/validate", fetchOptions);
+
+  if (!response.ok) {
+    return {
+      success: false,
+      errors: [{ type: "network", message: response.statusText }],
+    };
+  }
+
+  const result = await response.json();
+  return result as ValidateDeleteUserResult;
+}
+
+
+export type GetUserInput = {
+  id: UUID;
+};
+
+export type GetUserValidationErrors = {
+  id?: string[];
+};
+
+export type GetUserFields = UnifiedFieldSelection<KgEduAccountsUserResourceSchema>[];
+
+type InferGetUserResult<
+  Fields extends GetUserFields,
+> = InferResult<KgEduAccountsUserResourceSchema, Fields> | null;
+
+export type GetUserResult<Fields extends GetUserFields> = | { success: true; data: InferGetUserResult<Fields> }
+| {
+    success: false;
+    errors: Array<{
+      type: string;
+      message: string;
+      fieldPath?: string;
+      details: Record<string, string>;
+    }>;
+  }
+;
+
+export async function getUser<Fields extends GetUserFields>(
+  config: {
+  input: GetUserInput;
+  fields: Fields;
+  headers?: Record<string, string>;
+  fetchOptions?: RequestInit;
+  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+}
+): Promise<GetUserResult<Fields>> {
+  const payload = {
+    action: "get_user",
+    input: config.input,
+    fields: config.fields
+  };
+
+  const headers: Record<string, string> = {
+    "Content-Type": "application/json",
+    ...config.headers,
+  };
+
+  const fetchFunction = config.customFetch || fetch;
+  const fetchOptions: RequestInit = {
+    ...config.fetchOptions,
+    method: "POST",
+    headers,
+    body: JSON.stringify(payload),
+  };
+
+  const response = await fetchFunction("/rpc/run", fetchOptions);
+
+  if (!response.ok) {
+    return {
+      success: false,
+      errors: [{ type: "network", message: response.statusText, details: {} }],
+    };
+  }
+
+  const result = await response.json();
+  return result as GetUserResult<Fields>;
+}
+
+
+export type ValidateGetUserResult =
+  | { success: true }
+  | {
+      success: false;
+      errors: Array<{
+        type: string;
+        message: string;
+        field?: string;
+        fieldPath?: string;
+        details?: Record<string, any>;
+      }>;
+    };
+
+
+export async function validateGetUser(
+  config: {
+  input: GetUserInput;
+  headers?: Record<string, string>;
+  fetchOptions?: RequestInit;
+  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+}
+): Promise<ValidateGetUserResult> {
+  const payload = {
+    action: "get_user",
+    input: config.input
+  };
+
+  const headers: Record<string, string> = {
+    "Content-Type": "application/json",
+    ...config.headers,
+  };
+
+  const fetchFunction = config.customFetch || fetch;
+  const fetchOptions: RequestInit = {
+    ...config.fetchOptions,
+    method: "POST",
+    headers,
+    body: JSON.stringify(payload),
+  };
+
+  const response = await fetchFunction("/rpc/validate", fetchOptions);
+
+  if (!response.ok) {
+    return {
+      success: false,
+      errors: [{ type: "network", message: response.statusText }],
+    };
+  }
+
+  const result = await response.json();
+  return result as ValidateGetUserResult;
+}
+
+
+export type ListUsersFields = UnifiedFieldSelection<KgEduAccountsUserResourceSchema>[];
+
+type InferListUsersResult<
+  Fields extends ListUsersFields,
+> = Array<InferResult<KgEduAccountsUserResourceSchema, Fields>>;
+
+export type ListUsersResult<Fields extends ListUsersFields> = | { success: true; data: InferListUsersResult<Fields> }
+| {
+    success: false;
+    errors: Array<{
+      type: string;
+      message: string;
+      fieldPath?: string;
+      details: Record<string, string>;
+    }>;
+  }
+;
+
+export async function listUsers<Fields extends ListUsersFields>(
+  config: {
+  fields: Fields;
+  filter?: KgEduAccountsUserFilterInput;
+  sort?: string;
+  headers?: Record<string, string>;
+  fetchOptions?: RequestInit;
+  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+}
+): Promise<ListUsersResult<Fields>> {
+  const payload = {
+    action: "list_users",
+    fields: config.fields,
+    ...(config.filter && { filter: config.filter }),
+    ...(config.sort && { sort: config.sort })
+  };
+
+  const headers: Record<string, string> = {
+    "Content-Type": "application/json",
+    ...config.headers,
+  };
+
+  const fetchFunction = config.customFetch || fetch;
+  const fetchOptions: RequestInit = {
+    ...config.fetchOptions,
+    method: "POST",
+    headers,
+    body: JSON.stringify(payload),
+  };
+
+  const response = await fetchFunction("/rpc/run", fetchOptions);
+
+  if (!response.ok) {
+    return {
+      success: false,
+      errors: [{ type: "network", message: response.statusText, details: {} }],
+    };
+  }
+
+  const result = await response.json();
+  return result as ListUsersResult<Fields>;
+}
+
+
+export type ValidateListUsersResult =
+  | { success: true }
+  | {
+      success: false;
+      errors: Array<{
+        type: string;
+        message: string;
+        field?: string;
+        fieldPath?: string;
+        details?: Record<string, any>;
+      }>;
+    };
+
+
+export async function validateListUsers(
+  config: {
+  headers?: Record<string, string>;
+  fetchOptions?: RequestInit;
+  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+}
+): Promise<ValidateListUsersResult> {
+  const payload = {
+    action: "list_users"
+  };
+
+  const headers: Record<string, string> = {
+    "Content-Type": "application/json",
+    ...config.headers,
+  };
+
+  const fetchFunction = config.customFetch || fetch;
+  const fetchOptions: RequestInit = {
+    ...config.fetchOptions,
+    method: "POST",
+    headers,
+    body: JSON.stringify(payload),
+  };
+
+  const response = await fetchFunction("/rpc/validate", fetchOptions);
+
+  if (!response.ok) {
+    return {
+      success: false,
+      errors: [{ type: "network", message: response.statusText }],
+    };
+  }
+
+  const result = await response.json();
+  return result as ValidateListUsersResult;
+}
+
+
+export type SignOutInput = {
+  id: UUID;
+  token: string;
+};
+
+export type SignOutValidationErrors = {
+  id?: string[];
+  token?: string[];
+};
+
+type InferSignOutResult = {};
+
+export type SignOutResult = | { success: true; data: InferSignOutResult }
+| {
+    success: false;
+    errors: Array<{
+      type: string;
+      message: string;
+      fieldPath?: string;
+      details: Record<string, string>;
+    }>;
+  }
+;
+
+export async function signOut(
+  config: {
+  input: SignOutInput;
+  headers?: Record<string, string>;
+  fetchOptions?: RequestInit;
+  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+}
+): Promise<SignOutResult> {
+  const payload = {
+    action: "sign_out",
+    input: config.input
+  };
+
+  const headers: Record<string, string> = {
+    "Content-Type": "application/json",
+    ...config.headers,
+  };
+
+  const fetchFunction = config.customFetch || fetch;
+  const fetchOptions: RequestInit = {
+    ...config.fetchOptions,
+    method: "POST",
+    headers,
+    body: JSON.stringify(payload),
+  };
+
+  const response = await fetchFunction("/rpc/run", fetchOptions);
+
+  if (!response.ok) {
+    return {
+      success: false,
+      errors: [{ type: "network", message: response.statusText, details: {} }],
+    };
+  }
+
+  const result = await response.json();
+  return result as SignOutResult;
+}
+
+
+export type ValidateSignOutResult =
+  | { success: true }
+  | {
+      success: false;
+      errors: Array<{
+        type: string;
+        message: string;
+        field?: string;
+        fieldPath?: string;
+        details?: Record<string, any>;
+      }>;
+    };
+
+
+export async function validateSignOut(
+  config: {
+  input: SignOutInput;
+  headers?: Record<string, string>;
+  fetchOptions?: RequestInit;
+  customFetch?: (input: RequestInfo | URL, init?: RequestInit) => Promise<Response>;
+}
+): Promise<ValidateSignOutResult> {
+  const payload = {
+    action: "sign_out",
+    input: config.input
+  };
+
+  const headers: Record<string, string> = {
+    "Content-Type": "application/json",
+    ...config.headers,
+  };
+
+  const fetchFunction = config.customFetch || fetch;
+  const fetchOptions: RequestInit = {
+    ...config.fetchOptions,
+    method: "POST",
+    headers,
+    body: JSON.stringify(payload),
+  };
+
+  const response = await fetchFunction("/rpc/validate", fetchOptions);
+
+  if (!response.ok) {
+    return {
+      success: false,
+      errors: [{ type: "network", message: response.statusText }],
+    };
+  }
+
+  const result = await response.json();
+  return result as ValidateSignOutResult;
+}
 
 
 export type ListCoursesFields = UnifiedFieldSelection<KgEduCoursesCourseResourceSchema>[];

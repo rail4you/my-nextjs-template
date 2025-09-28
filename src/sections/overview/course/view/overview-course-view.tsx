@@ -5,6 +5,7 @@ import { varAlpha } from 'minimal-shared/utils';
 import Box from '@mui/material/Box';
 import { cardClasses } from '@mui/material/Card';
 import Typography from '@mui/material/Typography';
+import CircularProgress from '@mui/material/CircularProgress';
 
 import { CONFIG } from 'src/global-config';
 import { DashboardContent } from 'src/layouts/dashboard';
@@ -18,10 +19,50 @@ import { CourseMyAccount } from '../course-my-account';
 import { CourseHoursSpent } from '../course-hours-spent';
 import { CourseMyStrength } from '../course-my-strength';
 import { CourseWidgetSummary } from '../course-widget-summary';
+import { buildCSRFHeaders, listCourses } from 'src/lib/ash_rpc';
+import useSWR from 'swr';
 
 // ----------------------------------------------------------------------
+async function fetchCourses() {
+  const result = await listCourses({
+    fields: ["id", "title", "description", "imageUrl", "teacherId"],
+    page: {limit: 10, offset: 1  }, 
+    headers: buildCSRFHeaders()
+  });
+
+  if (!result.success) {
+    throw new Error(result.errors[0]?.message || "Failed to fetch courses");
+  }
+  // Add artificial delay for demo purposes
+  await new Promise(resolve => setTimeout(resolve, 3000));
+  console.log('Fetched courses:', result.data);
+  return result;
+}
+
 
 export function OverviewCourseView() {
+  const { data, error, isLoading } = useSWR('courses', fetchCourses);
+  if (isLoading) {
+    return <Box sx={{ pt: 5, pb: 10, px: { xs: 2, md: 3 } }}>Loading courses...</Box>;
+  }
+
+  if (error) {
+    return <Box sx={{ pt: 5, pb: 10, px: { xs: 2, md: 3 } }}>Error loading courses: {error.message}</Box>;
+  }
+
+  const courses = data;
+  console.log('Courses data:', courses, error, isLoading);
+  // console.log('Debugging:', { 
+  //   hasData: !!data, 
+  //   hasResults: !!data?.results, 
+  //   resultsLength: data?.results?.length,
+  //   firstResult: data?.results?.[0],
+  //   dataType: typeof data,
+  //   isArray: Array.isArray(data),
+  //   dataKeys: data ? Object.keys(data) : [],
+  //   actualData: data
+  // });
+
   return (
     <DashboardContent
       maxWidth={false}
@@ -128,10 +169,20 @@ export function OverviewCourseView() {
               }}
             />
 
-            <CourseContinue title="学习课程" list={_coursesContinue} />
+            {isLoading ? (
+              <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', py: 8 }}>
+                <CircularProgress />
+              </Box>
+            ) : (
+              <>
+              {data?.data && data?.data?.results?.map((c) => (<div key={c.id}>{c.title}</div>))  }
+              <div>{data?.data?.results.length || 0}</div> 
+              <CourseContinue title="学习课程" list={data?.data?.results || []} />
+              </>
+            )}
           </Box>
 
-          <CourseFeatured title="特色课程" list={_coursesFeatured} />
+          {/* <CourseFeatured title="特色课程" list={courses} /> */}
         </Box>
 
         <Box

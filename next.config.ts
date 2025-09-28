@@ -31,12 +31,38 @@ const nextConfig: NextConfig = {
         source: '/rpc/run',
         destination: 'http://localhost:4000/rpc/run',
       },
+      {
+        source: '/api/auth/sign-in',
+        destination: 'http://localhost:4000/api/json/users/sign-in',
+      },
+
     ];
   },
   async headers() {
     return [
       {
         source: '/rpc/run',
+        headers: [
+          {
+            key: 'Access-Control-Allow-Origin',
+            value: '*',
+          },
+          {
+            key: 'Access-Control-Allow-Methods',
+            value: 'GET, POST, PUT, DELETE, PATCH, OPTIONS',
+          },
+          {
+            key: 'Access-Control-Allow-Headers',
+            value: 'Content-Type, Authorization, X-Requested-With, Accept, Origin, User-Agent, DNT, Cache-Control, X-Mx-ReqToken, Keep-Alive, X-Requested-With, If-Modified-Since',
+          },
+          {
+            key: 'Access-Control-Max-Age',
+            value: '86400',
+          },
+        ],
+      },
+            {
+        source: '/api/auth/sign-in',
         headers: [
           {
             key: 'Access-Control-Allow-Origin',

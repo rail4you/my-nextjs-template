@@ -20,13 +20,16 @@ type Props = CardProps & {
   list: {
     id: string;
     title: string;
-    coverUrl: string;
-    totalLesson: number;
-    currentLesson: number;
+    description: string | null;
+    imageUrl: string | null;
+    teacherId:string
+    // totalLesson: number;
+    // currentLesson: number;
   }[];
 };
 
 export function CourseContinue({ title, subheader, list, sx, ...other }: Props) {
+  console.log('CourseContinue list:', list);
   return (
     <Card sx={sx} {...other}>
       <CardHeader title={title} subheader={subheader} />
@@ -54,7 +57,7 @@ type ItemProps = BoxProps & {
 };
 
 function Item({ item, sx, ...other }: ItemProps) {
-  const percent = (item.currentLesson / item.totalLesson) * 100;
+  const percent = (2 / 5 ) * 100;
 
   return (
     <Box
@@ -63,7 +66,7 @@ function Item({ item, sx, ...other }: ItemProps) {
     >
       <Avatar
         alt={item.title}
-        src={item.coverUrl}
+        src={item.imageUrl ?? undefined}
         variant="rounded"
         sx={{ width: 56, height: 56 }}
       />
@@ -77,12 +80,12 @@ function Item({ item, sx, ...other }: ItemProps) {
         }}
       >
         <Link color="inherit" noWrap sx={{ mb: 0.5, typography: 'subtitle2' }}>
-          python编程语言与应用
-          {/* {item.title} */}
+          {/* python编程语言与应用 */}
+          {item.title}
         </Link>
 
         <Box component="span" sx={{ color: 'text.secondary', typography: 'caption' }}>
-          课程章节: {item.currentLesson}/{item.totalLesson}
+          课程章节: { 1/5}
         </Box>
 
         <Box sx={{ gap: 2, width: 1, display: 'flex', alignItems: 'center' }}>

@@ -30,7 +30,7 @@ import { signInWithPassword } from '../../context/jwt';
 export type SignInSchemaType = z.infer<typeof SignInSchema>;
 
 export const SignInSchema = z.object({
-  email: schemaUtils.email(),
+  memberId: z.string(),
   password: z
     .string()
     .min(1, { error: 'Password is required!' })
@@ -49,7 +49,7 @@ export function JwtSignInView() {
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   const defaultValues: SignInSchemaType = {
-    email: 'demo@minimals.cc',
+    memberId: 'demo@minimals.cc',
     password: '@2Minimal',
   };
 
@@ -65,7 +65,7 @@ export function JwtSignInView() {
 
   const onSubmit = handleSubmit(async (data) => {
     try {
-      await signInWithPassword({ email: data.email, password: data.password });
+      await signInWithPassword({ memberId: data.memberId, password: data.password });
       await checkUserSession?.();
 
       router.refresh();
@@ -78,7 +78,7 @@ export function JwtSignInView() {
 
   const renderForm = () => (
     <Box sx={{ gap: 3, display: 'flex', flexDirection: 'column' }}>
-      <Field.Text name="email" label="Email address" slotProps={{ inputLabel: { shrink: true } }} />
+      <Field.Text name="memberId" label="memberId" slotProps={{ inputLabel: { shrink: true } }} />
 
       <Box sx={{ gap: 1.5, display: 'flex', flexDirection: 'column' }}>
         <Link

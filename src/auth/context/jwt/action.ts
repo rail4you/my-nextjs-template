@@ -4,11 +4,12 @@ import axios, { endpoints } from 'src/lib/axios';
 
 import { setSession } from './utils';
 import { JWT_STORAGE_KEY } from './constant';
+import { signIn } from 'src/lib/ash_rpc';
 
 // ----------------------------------------------------------------------
 
 export type SignInParams = {
-  email: string;
+  memberId: string;
   password: string;
 };
 
@@ -22,19 +23,33 @@ export type SignUpParams = {
 /** **************************************
  * Sign in
  *************************************** */
-export const signInWithPassword = async ({ email, password }: SignInParams): Promise<void> => {
+export const signInWithPassword = async ({ memberId, password }: SignInParams): Promise<void> => {
   try {
-    const params = { email, password };
+    const params = { memberId, password };
 
-    const res = await axios.post(endpoints.auth.signIn, params);
+    const res = await axios.post(
+      "http://localhost:4000/api/json/users/sign-in",
+      {
+        data: {
+          type: "user",
+          attributes: { member_id: memberId, password: password }
+        }
+      },
+      {
+        headers: {
+          'Content-Type': 'application/vnd.api+json',
+          'Accept': 'application/vnd.api+json'
+        }
+      }
+    );
+    
+    const { token } = res.data.meta;
 
-    const { accessToken } = res.data;
-
-    if (!accessToken) {
+    if (!res) {
       throw new Error('Access token not found in response');
     }
 
-    setSession(accessToken);
+    setSession(token);
   } catch (error) {
     console.error('Error during sign in:', error);
     throw error;

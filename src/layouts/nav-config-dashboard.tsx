@@ -68,6 +68,7 @@ export const navData: NavSectionProps['data'] = [
   {
     subheader: '学习模块',
     items: [
+      { title: '智能助手', path: paths.dashboard.gpt, icon: ICONS.dashboard },
       { title: '课程概览', path: paths.dashboard.root, icon: ICONS.dashboard },
       { title: '课程', path: paths.dashboard.general.ecommerce, icon: ICONS.ecommerce },
       { title: '课程图谱', path: paths.dashboard.general.analytics, icon: ICONS.analytics },

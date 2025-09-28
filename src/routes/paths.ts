@@ -91,6 +91,7 @@ export const paths = {
   // DASHBOARD
   dashboard: {
     root: ROOTS.DASHBOARD,
+    gpt: `${ROOTS.DASHBOARD}/gpt`,
     mail: `${ROOTS.DASHBOARD}/mail`,
     chat: `${ROOTS.DASHBOARD}/chat`,
     blank: `${ROOTS.DASHBOARD}/blank`,
