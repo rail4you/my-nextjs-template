@@ -68,15 +68,17 @@ export const navData: NavSectionProps['data'] = [
   {
     subheader: '学习模块',
     items: [
+      { title: '课程概览', path: paths.dashboard.intro, icon: ICONS.dashboard },
+      { title: '教师团队', path: paths.dashboard.teacher, icon: ICONS.dashboard },
       { title: '智能助手', path: paths.dashboard.gpt, icon: ICONS.dashboard },
-      { title: '课程概览', path: paths.dashboard.root, icon: ICONS.dashboard },
+      // { title: '课程概览', path: paths.dashboard.root, icon: ICONS.dashboard },
       { title: '课程', path: paths.dashboard.general.ecommerce, icon: ICONS.ecommerce },
       { title: '课程图谱', path: paths.dashboard.general.analytics, icon: ICONS.analytics },
       { title: '问题图谱', path: paths.dashboard.general.banking, icon: ICONS.banking },
       { title: '思政图谱', path: paths.dashboard.general.booking, icon: ICONS.booking },
       { title: '学习概览', path: paths.dashboard.general.file, icon: ICONS.file },
       { title: '习题', path: paths.dashboard.general.course, icon: ICONS.course },
-      { title: '智能助手', path: paths.dashboard.general.course, icon: ICONS.course },
+      // { title: '智能助手', path: paths.dashboard.general.course, icon: ICONS.course },
     ],
   },
   /**

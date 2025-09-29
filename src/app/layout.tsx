@@ -24,7 +24,8 @@ import { AuthProvider as Auth0AuthProvider } from 'src/auth/context/auth0';
 import { AuthProvider as AmplifyAuthProvider } from 'src/auth/context/amplify';
 import { AuthProvider as SupabaseAuthProvider } from 'src/auth/context/supabase';
 import { AuthProvider as FirebaseAuthProvider } from 'src/auth/context/firebase';
-
+import { CopilotKit } from '@copilotkit/react-core';
+import "@copilotkit/react-ui/styles.css";
 // ----------------------------------------------------------------------
 
 const AuthProvider =
@@ -80,40 +81,42 @@ export default async function RootLayout({ children }: RootLayoutProps) {
 
   return (
     <html lang={appConfig.lang} dir={appConfig.dir} suppressHydrationWarning>
-      <body>
-        <InitColorSchemeScript
-          modeStorageKey={themeConfig.modeStorageKey}
-          attribute={themeConfig.cssVariables.colorSchemeSelector}
-          defaultMode={themeConfig.defaultMode}
-        />
+      <CopilotKit publicApiKey="ck_pub_58ba06c7273dea65829064e9182c3889">
+        <body>
+          <InitColorSchemeScript
+            modeStorageKey={themeConfig.modeStorageKey}
+            attribute={themeConfig.cssVariables.colorSchemeSelector}
+            defaultMode={themeConfig.defaultMode}
+          />
 
-        <I18nProvider lang={appConfig.i18nLang}>
-          <AuthProvider>
-            <SettingsProvider
-              defaultSettings={defaultSettings}
-              cookieSettings={appConfig.cookieSettings}
-            >
-              <LocalizationProvider>
-                <AppRouterCacheProvider options={{ key: 'css' }}>
-                  <ThemeProvider
-                    modeStorageKey={themeConfig.modeStorageKey}
-                    defaultMode={themeConfig.defaultMode}
-                  >
-                    <MotionLazy>
-                      <CheckoutProvider>
-                        <Snackbar />
-                        <ProgressBar />
-                        <SettingsDrawer defaultSettings={defaultSettings} />
-                        {children}
-                      </CheckoutProvider>
-                    </MotionLazy>
-                  </ThemeProvider>
-                </AppRouterCacheProvider>
-              </LocalizationProvider>
-            </SettingsProvider>
-          </AuthProvider>
-        </I18nProvider>
-      </body>
+          <I18nProvider lang={appConfig.i18nLang}>
+            <AuthProvider>
+              <SettingsProvider
+                defaultSettings={defaultSettings}
+                cookieSettings={appConfig.cookieSettings}
+              >
+                <LocalizationProvider>
+                  <AppRouterCacheProvider options={{ key: 'css' }}>
+                    <ThemeProvider
+                      modeStorageKey={themeConfig.modeStorageKey}
+                      defaultMode={themeConfig.defaultMode}
+                    >
+                      <MotionLazy>
+                        <CheckoutProvider>
+                          <Snackbar />
+                          <ProgressBar />
+                          <SettingsDrawer defaultSettings={defaultSettings} />
+                          {children}
+                        </CheckoutProvider>
+                      </MotionLazy>
+                    </ThemeProvider>
+                  </AppRouterCacheProvider>
+                </LocalizationProvider>
+              </SettingsProvider>
+            </AuthProvider>
+          </I18nProvider>
+        </body>
+      </CopilotKit>
     </html>
   );
 }
