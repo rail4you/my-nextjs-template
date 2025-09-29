@@ -2,12 +2,12 @@ import type { Metadata } from 'next';
 
 import { CONFIG } from 'src/global-config';
 
-import {TeacherView} from 'src/sections/teacher/view/teacher-view';
+import CourseDataView from 'src/sections/course/view/course-data-view';
 
 // ----------------------------------------------------------------------
 
 export const metadata: Metadata = { title: `Teacher | Dashboard - ${CONFIG.appName}` };
 
 export default function Page() {
-  return <TeacherView />;
+  return <CourseDataView />;
 }

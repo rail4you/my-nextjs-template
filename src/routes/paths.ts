@@ -91,8 +91,16 @@ export const paths = {
   // DASHBOARD
   dashboard: {
     root: ROOTS.DASHBOARD,
-    overview: `${ROOTS.DASHBOARD}/intro`,
+    intro: `${ROOTS.DASHBOARD}/intro`,
+    course: `${ROOTS.DASHBOARD}/course`,
     teacher: `${ROOTS.DASHBOARD}/teacher`,
+    graphLayer: `${ROOTS.DASHBOARD}/graph-layer`,
+    courseVideo: `${ROOTS.DASHBOARD}/course/video`,
+    courseSummary: `${ROOTS.DASHBOARD}/course/summary`,
+    courseCategory: `${ROOTS.DASHBOARD}/course/category`,
+    graph: `${ROOTS.DASHBOARD}/graph`,
+    knowledge: `${ROOTS.DASHBOARD}/knowledge`,
+    resource: `${ROOTS.DASHBOARD}/resource`,
     gpt: `${ROOTS.DASHBOARD}/gpt`,
     mail: `${ROOTS.DASHBOARD}/mail`,
     chat: `${ROOTS.DASHBOARD}/chat`,
