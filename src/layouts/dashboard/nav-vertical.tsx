@@ -48,7 +48,7 @@ export function NavVertical({
             <Logo />
           </Box>
           <Box>
-            知识图谱智慧教学系统
+            课堂星智慧教学系统
           </Box>
         </Box>
         </>

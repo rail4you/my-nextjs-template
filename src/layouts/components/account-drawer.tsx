@@ -120,7 +120,7 @@ export function AccountDrawer({ data = [], sx, ...other }: AccountDrawerProps) {
   return (
     <>
       <AccountButton
-        onClick={onClose}
+        onClick={onOpen}
         photoURL={user?.photoURL}
         displayName={user?.displayName}
         sx={sx}

@@ -13,7 +13,7 @@ export default function Layout({ children }: Props) {
     <GuestGuard>
       <AuthSplitLayout
         slotProps={{
-          section: { title: 'Hi, Welcome back' },
+          section: { title: '课堂星知识图谱智慧教学系统' },
         }}
       >
         {children}

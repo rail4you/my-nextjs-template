@@ -58,8 +58,8 @@ export const _appInvoices = Array.from({ length: 5 }, (_, index) => {
 
 export const _appFeatured = Array.from({ length: 3 }, (_, index) => ({
   id: _mock.id(index + 3),
-  title: _mock.postTitle(index + 3),
-  description: _mock.sentence(index + 3),
+  title: "图谱图片",
+  description: "图谱图片",
   coverUrl: _mock.image.cover(index + 3),
 }));
 

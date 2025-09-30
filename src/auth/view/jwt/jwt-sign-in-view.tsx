@@ -49,8 +49,8 @@ export function JwtSignInView() {
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   const defaultValues: SignInSchemaType = {
-    memberId: 'demo@minimals.cc',
-    password: '@2Minimal',
+    memberId: '12345678',
+    password: '12345678',
   };
 
   const methods = useForm({
@@ -78,7 +78,7 @@ export function JwtSignInView() {
 
   const renderForm = () => (
     <Box sx={{ gap: 3, display: 'flex', flexDirection: 'column' }}>
-      <Field.Text name="memberId" label="memberId" slotProps={{ inputLabel: { shrink: true } }} />
+      <Field.Text name="memberId" label="学号/教工号" slotProps={{ inputLabel: { shrink: true } }} />
 
       <Box sx={{ gap: 1.5, display: 'flex', flexDirection: 'column' }}>
         <Link
@@ -88,12 +88,12 @@ export function JwtSignInView() {
           color="inherit"
           sx={{ alignSelf: 'flex-end' }}
         >
-          Forgot password?
+          {/* Forgot password? */}
         </Link>
 
         <Field.Text
           name="password"
-          label="Password"
+          label="密码"
           placeholder="6+ characters"
           type={showPassword.value ? 'text' : 'password'}
           slotProps={{
@@ -122,7 +122,7 @@ export function JwtSignInView() {
         loading={isSubmitting}
         loadingIndicator="Sign in..."
       >
-        Sign in
+        登陆
       </Button>
     </Box>
   );
@@ -130,12 +130,12 @@ export function JwtSignInView() {
   return (
     <>
       <FormHead
-        title="Sign in to your account"
+        title="登陆知识图谱智慧教学系统"
         description={
           <>
-            {`Don’t have an account? `}
+            {/* {`Don’t have an account? `} */}
             <Link component={RouterLink} href={paths.auth.jwt.signUp} variant="subtitle2">
-              Get started
+              {/*  */}
             </Link>
           </>
         }
@@ -143,9 +143,9 @@ export function JwtSignInView() {
       />
 
       <Alert severity="info" sx={{ mb: 3 }}>
-        Use <strong>{defaultValues.email}</strong>
-        {' with password '}
-        <strong>{defaultValues.password}</strong>
+        {/* Use <strong>{defaultValues.email}</strong>
+        {' with password '} */}
+        <strong>默认密码{defaultValues.password}</strong>
       </Alert>
 
       {!!errorMessage && (

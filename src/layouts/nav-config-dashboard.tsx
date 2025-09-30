@@ -7,7 +7,6 @@ import { CONFIG } from 'src/global-config';
 import { Label } from 'src/components/label';
 import { Iconify } from 'src/components/iconify';
 import { SvgColor } from 'src/components/svg-color';
-import { Icon } from '@mui/material';
 
 // ----------------------------------------------------------------------
 
@@ -69,17 +68,17 @@ export const navData: NavSectionProps['data'] = [
   {
     subheader: '学习模块',
     items: [
-      { title: '课程概览', path: paths.dashboard.intro, icon: <Iconify icon="solar:home-smile-bold-duotone" width={24} /> },
+      { title: '课程概览', path: paths.dashboard.intro, icon: <Iconify icon="solar:home-angle-bold-duotone" width={24} /> },
       { title: '教师团队', path: paths.dashboard.teacher, icon: <Iconify icon="solar:users-group-rounded-bold-duotone" width={24} /> },
       { title: '课程概述', path: paths.dashboard.course, icon: ICONS.course },
-      { title: '图谱汇总', path: paths.dashboard.graphLayer, icon: <Iconify icon="solar:layers-minimalistic-bold-duotone" width={24} /> },
-      { title: '课程视频', path: paths.dashboard.courseVideo, icon: <Iconify icon="solar:videocamera-record-bold-duotone" width={24} /> },
+      { title: '图谱汇总', path: paths.dashboard.graphLayer, icon: <Iconify icon="solar:case-minimalistic-bold" width={24} /> },
+      { title: '课程视频', path: paths.dashboard.courseVideo, icon: <Iconify icon="solar:videocamera-record-bold" width={24} /> },
       { title: '课程汇总', path: paths.dashboard.resource, icon: ICONS.folder },
-      { title: '课程图谱', path: paths.dashboard.graph, icon: <Iconify icon="solar:share-bold-duotone" width={24} /> },
-      { title: '图谱框架', path: paths.dashboard.courseCategory, icon: <Iconify icon="solar:bookmark-square-bold-duotone" width={24} /> },
+      { title: '课程图谱', path: paths.dashboard.graph, icon: <Iconify icon="solar:file-bold-duotone" width={24} /> },
+      { title: '图谱框架', path: paths.dashboard.courseCategory, icon: <Iconify icon="solar:box-minimalistic-bold" width={24} /> },
       { title: '知识点', path: paths.dashboard.knowledge, icon: ICONS.booking },
-      { title: '教学资源', path: paths.dashboard.resource, icon: <Iconify icon="solar:library-bold-duotone" width={24} /> },
-      { title: '智能助手', path: paths.dashboard.gpt, icon: <Iconify icon="solar:chat-dots-bold-duotone" width={24} /> },
+      { title: '教学资源', path: paths.dashboard.resource, icon: <Iconify icon="solar:file-bold-duotone" width={24} /> },
+      { title: '智能助手', path: paths.dashboard.gpt, icon: <Iconify icon="solar:atom-bold-duotone" width={24} /> },
       // { title: '课程概览', path: paths.dashboard.root, icon: ICONS.dashboard },
       // { title: '课程', path: paths.dashboard.general.ecommerce, icon: ICONS.ecommerce },
       // { title: '分析', path: paths.dashboard.general.analytics, icon: ICONS.analytics },

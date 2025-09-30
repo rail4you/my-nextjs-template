@@ -34,7 +34,7 @@ export function AuthSplitSection({
   layoutQuery = 'md',
   title = 'Manage the job',
   imgUrl = `${CONFIG.assetsDir}/assets/illustrations/illustration-dashboard.webp`,
-  subtitle = 'More effectively with optimized workflows.',
+  subtitle = '欢迎使用课堂星知识图谱智慧教学系统',
   ...other
 }: AuthSplitSectionProps) {
   return (
