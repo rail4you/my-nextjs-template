@@ -89,6 +89,7 @@
     "i18next-browser-languagedetector": "^8.2.0",
     "i18next-resources-to-backend": "^1.2.1",
     "lowlight": "^3.3.0",
+    "lucide-react": "^0.544.0",
     "maplibre-gl": "^5.6.2",
     "minimal-shared": "^1.0.15",
     "mui-one-time-password-input": "^5.0.0",
