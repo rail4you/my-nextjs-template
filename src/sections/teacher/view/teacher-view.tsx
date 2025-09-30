@@ -36,16 +36,16 @@ const TABLE_HEAD: TableHeadCellProps[] = [
   { id: 'name', label: 'Name' },
   { id: 'subject', label: 'Subject' },
   { id: 'email', label: 'Email' },
-  { id: 'status', label: 'Status' },
-  { id: 'actions', label: 'Actions', align: 'right' },
+  // { id: 'status', label: 'Status' },
+  // { id: 'actions', label: 'Actions', align: 'right' },
 ];
 
 const MOCK_TEACHERS: Teacher[] = [
-  { id: '1', name: 'John Smith', subject: 'Mathematics', email: 'john.smith@school.edu', status: 'active' },
-  { id: '2', name: 'Sarah Johnson', subject: 'Science', email: 'sarah.johnson@school.edu', status: 'active' },
-  { id: '3', name: 'Michael Brown', subject: 'English', email: 'michael.brown@school.edu', status: 'inactive' },
-  { id: '4', name: 'Emily Davis', subject: 'History', email: 'emily.davis@school.edu', status: 'active' },
-  { id: '5', name: 'David Wilson', subject: 'Computer Science', email: 'david.wilson@school.edu', status: 'active' },
+  { id: '1', name: '李老师', subject: '中医基本理论', email: 'li@school.edu', status: 'active' },
+  { id: '2', name: '张老师', subject: '中医基本理论', email: 'zhang@school.edu', status: 'active' },
+  { id: '3', name: '白老师', subject: '中医基本理论', email: 'bai@school.edu', status: 'inactive' },
+  // { id: '4', name: 'Emily Davis', subject: 'History', email: 'emily.davis@school.edu', status: 'active' },
+  // { id: '5', name: 'David Wilson', subject: 'Computer Science', email: 'david.wilson@school.edu', status: 'active' },
 ];
 
 // ----------------------------------------------------------------------
@@ -80,10 +80,10 @@ export function TeacherView() {
           justifyContent: 'space-between',
         }}
       >
-        <Box sx={{ typography: 'h4' }}>Teacher</Box>
-        <Button variant="contained" startIcon={<Iconify icon="mingcute:add-line" />}>
+        <Box sx={{ typography: 'h4' }}>教师团队</Box>
+        {/* <Button variant="contained" startIcon={<Iconify icon="mingcute:add-line" />}>
           Add Teacher
-        </Button>
+        </Button> */}
       </Box>
 
       <Box sx={{ mb: 3 }}>
@@ -91,7 +91,7 @@ export function TeacherView() {
           fullWidth
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
-          placeholder="Search teacher..."
+          placeholder="搜索教师..."
           slotProps={{
             input: {
               startAdornment: (
@@ -132,7 +132,7 @@ export function TeacherView() {
                   <TableCell sx={{ typography: 'subtitle2' }}>{row.name}</TableCell>
                   <TableCell sx={{ color: 'text.secondary' }}>{row.subject}</TableCell>
                   <TableCell sx={{ color: 'text.secondary' }}>{row.email}</TableCell>
-                  <TableCell>
+                  {/* <TableCell>
                     <Box
                       sx={{
                         display: 'inline-flex',
@@ -167,7 +167,7 @@ export function TeacherView() {
                         <Iconify icon="solar:trash-bin-trash-bold" />
                       </IconButton>
                     </Box>
-                  </TableCell>
+                  </TableCell> */}
                 </TableRow>
               ))}
             </TableBody>

@@ -10,7 +10,7 @@ const CourseOverviewView: React.FC = () => {
   return (
     <Box sx={{ maxWidth: 1200, mx: 'auto', p: 3 }}>
       <Typography variant="h3" sx={{ mb: 3, fontWeight: 'bold' }}>
-        Course Overview
+        课程概述
       </Typography>
       
       <Card sx={{ mb: 4 }}>
@@ -18,32 +18,32 @@ const CourseOverviewView: React.FC = () => {
           <Box sx={{ display: 'flex', gap: 4, flexWrap: 'wrap' }}>
             <Box sx={{ flex: 1, minWidth: 300 }}>
               <Typography variant="h4" sx={{ mb: 2 }}>
-                Complete Web Development Bootcamp
+                中医护理学
               </Typography>
               
               <Stack direction="row" spacing={2} sx={{ mb: 2 }}>
                 <Chip 
                   icon={<AccessTimeIcon />} 
-                  label="12 weeks" 
+                  label="9周" 
                   variant="outlined" 
                   size="small" 
                 />
                 <Chip 
                   icon={<PeopleIcon />} 
-                  label="1,234 students" 
+                  label="1 学生" 
                   variant="outlined" 
                   size="small" 
                 />
                 <Chip 
                   icon={<StarIcon />} 
-                  label="4.8 rating" 
+                  label="4.8" 
                   variant="outlined" 
                   size="small" 
                 />
               </Stack>
               
               <Typography variant="body1" sx={{ mb: 3 }}>
-                Learn to build modern web applications from scratch. This comprehensive bootcamp covers HTML, CSS, JavaScript, React, Node.js, and more.
+                本课程涵盖中医护理学的基础知识与实践技能，帮助学生掌握中医护理的核心理念和方法。通过理论学习与实际操作相结合，培养学生在临床护理中的综合能力。
               </Typography>
               
               <Stack direction="row" spacing={2}>
@@ -52,10 +52,10 @@ const CourseOverviewView: React.FC = () => {
                   startIcon={<PlayArrowIcon />}
                   sx={{ px: 4 }}
                 >
-                  Start Learning
+                  开始学习
                 </Button>
                 <Button variant="outlined">
-                  View Syllabus
+                  查看资源
                 </Button>
               </Stack>
             </Box>
@@ -79,45 +79,34 @@ const CourseOverviewView: React.FC = () => {
       <Card>
         <CardContent>
           <Typography variant="h5" sx={{ mb: 2 }}>
-            Course Modules
+            课程模块
           </Typography>
           
           <Stack spacing={2}>
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
               <Avatar sx={{ bgcolor: 'primary.main' }}>1</Avatar>
               <Box sx={{ flex: 1 }}>
-                <Typography variant="h6">HTML & CSS Fundamentals</Typography>
+                <Typography variant="h6">绪论</Typography>
                 <Typography variant="body2" color="text.secondary">
-                  Learn the building blocks of web development
+                  绪论
                 </Typography>
               </Box>
-              <Chip label="2 weeks" size="small" />
+              <Chip label="3周" size="small" />
             </Box>
             
             <Divider />
             
-            <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-              <Avatar sx={{ bgcolor: 'primary.main' }}>2</Avatar>
-              <Box sx={{ flex: 1 }}>
-                <Typography variant="h6">JavaScript Programming</Typography>
-                <Typography variant="body2" color="text.secondary">
-                  Master modern JavaScript and ES6+ features
-                </Typography>
-              </Box>
-              <Chip label="3 weeks" size="small" />
-            </Box>
-            
-            <Divider />
+           
             
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
               <Avatar sx={{ bgcolor: 'primary.main' }}>3</Avatar>
               <Box sx={{ flex: 1 }}>
-                <Typography variant="h6">React & Frontend Frameworks</Typography>
+                <Typography variant="h6">中医基本理论</Typography>
                 <Typography variant="body2" color="text.secondary">
-                  Build interactive user interfaces with React
+                  掌握中医基本理论知识
                 </Typography>
               </Box>
-              <Chip label="4 weeks" size="small" />
+              <Chip label="3周" size="small" />
             </Box>
             
             <Divider />
@@ -125,12 +114,12 @@ const CourseOverviewView: React.FC = () => {
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
               <Avatar sx={{ bgcolor: 'primary.main' }}>4</Avatar>
               <Box sx={{ flex: 1 }}>
-                <Typography variant="h6">Backend Development</Typography>
+                <Typography variant="h6">中医方学知识</Typography>
                 <Typography variant="body2" color="text.secondary">
-                  Create server-side applications with Node.js
+                  掌握中医方学知识
                 </Typography>
               </Box>
-              <Chip label="3 weeks" size="small" />
+              <Chip label="3周" size="small" />
             </Box>
           </Stack>
         </CardContent>

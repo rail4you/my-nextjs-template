@@ -12,9 +12,9 @@ import { ChartLine } from 'src/sections/_examples/extra/chart-view/chart-line';
 import { ChartBar } from 'src/sections/_examples/extra/chart-view/chart-bar';
 import { ChartPie } from 'src/sections/_examples/extra/chart-view/chart-pie';
 import LayerView from './layer-view';
-import { GraphTreeView } from './graph-tree-view';
-import { GraphCircleView } from './graph-circle-view';
-import { GraphKnowledgeView } from './graph-knowledge-view';
+import GraphTreeView from './graph-tree-view';
+import GraphCircleView from './graph-circle-view';
+import GraphKnowledgeView from './graph-knowledge-view';
 
 const TABS = [
   {

@@ -76,41 +76,29 @@ interface ResourceItem {
 
 export default function ResourceView() {
   const resourceSummary: ResourceSummary = {
-    title: 'Web Development Fundamentals',
-    description: 'A comprehensive course covering HTML, CSS, JavaScript, and modern web development frameworks',
-    chapters: 8,
-    videos: 32,
-    documents: 15,
-    assessments: 8,
-    totalDuration: '24h 30m',
-    enrolledStudents: 1234,
-    rating: 4.7,
+    title: '中医护理学',
+    description: '',
+    chapters: 3,
+    videos: 1,
+    documents: 0,
+    assessments: 0,
+    totalDuration: '25m',
+    enrolledStudents: 1,
+    rating: 4.8,
     instructor: {
-      name: 'Sarah Johnson',
+      name: '白老师',
       avatar: '/assets/avatar-1.jpg'
     }
   };
 
   const chapters: Chapter[] = [
-    { id: '1', title: 'HTML基础', duration: '2h 15m', completed: true, videoCount: 4, documentCount: 2, assessmentCount: 1 },
-    { id: '2', title: 'CSS样式设计', duration: '3h 20m', completed: true, videoCount: 5, documentCount: 3, assessmentCount: 1 },
-    { id: '3', title: 'JavaScript编程', duration: '4h 45m', completed: false, videoCount: 8, documentCount: 4, assessmentCount: 2 },
-    { id: '4', title: '响应式设计', duration: '2h 30m', completed: false, videoCount: 4, documentCount: 2, assessmentCount: 1 },
-    { id: '5', title: '前端框架入门', duration: '5h 10m', completed: false, videoCount: 6, documentCount: 3, assessmentCount: 2 },
-    { id: '6', title: '项目实战', duration: '3h 40m', completed: false, videoCount: 3, documentCount: 1, assessmentCount: 1 },
-    { id: '7', title: '性能优化', duration: '2h 50m', completed: false, videoCount: 4, documentCount: 0, assessmentCount: 1 },
-    { id: '8', title: '部署与发布', duration: '1h 30m', completed: false, videoCount: 2, documentCount: 0, assessmentCount: 0 }
+    { id: '1', title: '绪论', duration: '25m', completed: true, videoCount: 1, documentCount: 0, assessmentCount: 0 },
+    { id: '2', title: '中医基本理论', duration: '0m', completed: false, videoCount: 0, documentCount: 0, assessmentCount: 0 },
+    { id: '3', title: '方药基本知识', duration: '4h 45m', completed: false, videoCount: 8, documentCount: 0, assessmentCount: 0 },
   ];
 
   const resources: ResourceItem[] = [
-    { id: '1', title: 'HTML简介与基本结构', type: 'video', duration: '15:30', status: 'completed', lastAccessed: '2024-01-15' },
-    { id: '2', title: 'HTML常用标签详解', type: 'video', duration: '22:45', status: 'completed', lastAccessed: '2024-01-15' },
-    { id: '3', title: 'HTML表单与输入', type: 'video', duration: '18:20', status: 'completed', lastAccessed: '2024-01-16' },
-    { id: '4', title: 'HTML5新特性', type: 'video', duration: '25:15', status: 'in-progress', lastAccessed: '2024-01-16' },
-    { id: '5', title: 'HTML基础教程文档', type: 'document', size: '2.3MB', status: 'completed', lastAccessed: '2024-01-15' },
-    { id: '6', title: 'HTML基础练习题', type: 'assessment', questions: 10, status: 'completed', lastAccessed: '2024-01-15' },
-    { id: '7', title: 'CSS基础语法', type: 'video', duration: '20:10', status: 'not-started', lastAccessed: '' },
-    { id: '8', title: 'CSS选择器详解', type: 'video', duration: '28:35', status: 'not-started', lastAccessed: '' }
+    { id: '1', title: '绪论', type: 'video', duration: '25m', status: 'completed', lastAccessed: '2025-09-30' },
   ];
 
   const getTypeIcon = (type: string) => {

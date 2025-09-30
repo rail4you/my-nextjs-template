@@ -81,7 +81,7 @@ export default async function RootLayout({ children }: RootLayoutProps) {
 
   return (
     <html lang={appConfig.lang} dir={appConfig.dir} suppressHydrationWarning>
-      {/* <CopilotKit publicApiKey="ck_pub_58ba06c7273dea65829064e9182c3889"> */}
+      <CopilotKit publicApiKey="ck_pub_58ba06c7273dea65829064e9182c3889">
         <body>
           <InitColorSchemeScript
             modeStorageKey={themeConfig.modeStorageKey}
@@ -116,7 +116,7 @@ export default async function RootLayout({ children }: RootLayoutProps) {
             </AuthProvider>
           </I18nProvider>
         </body>
-      {/* </CopilotKit> */}
+      </CopilotKit>
     </html>
   );
 }

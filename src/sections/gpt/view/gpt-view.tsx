@@ -18,52 +18,28 @@ const GptView: React.FC = () => {
     const aiTools: Tool[] = [
         {
             id: '1',
-            title: 'Code Assistant',
-            description: 'Help with writing, debugging, and optimizing code',
-            usage: 'Ask for code examples, debugging help, or code review',
+            title: '智能出题助手',
+            description: '智能生成各类题目，涵盖选择题、填空题、简答题等多种题型',
+            usage: '智能生成各类题目，涵盖选择题、填空题、简答题等多种题型',
             icon: '💻',
-            category: 'Development'
+            category: '学习'
         },
         {
             id: '2',
-            title: 'Data Analysis',
-            description: 'Analyze datasets and generate insights',
-            usage: 'Upload data files and ask for analysis, visualizations, or reports',
+            title: '智能数据分析',
+            description: '智能数据分析',
+            usage: '智能数据分析',
             icon: '📊',
             category: 'Analytics'
         },
         {
             id: '3',
-            title: 'Document Summarizer',
-            description: 'Summarize long documents and extract key information',
-            usage: 'Paste text or upload documents for intelligent summarization',
+            title: '智能文本总结',
+            description: '智能总结文本',
+            usage: '智能总结文本',
             icon: '📄',
             category: 'Productivity'
         },
-        {
-            id: '4',
-            title: 'Image Generator',
-            description: 'Create images from text descriptions',
-            usage: 'Describe what you want to see and generate custom images',
-            icon: '🎨',
-            category: 'Creative'
-        },
-        {
-            id: '5',
-            title: 'Language Translator',
-            description: 'Translate text between multiple languages',
-            usage: 'Provide text to translate and specify target language',
-            icon: '🌍',
-            category: 'Communication'
-        },
-        {
-            id: '6',
-            title: 'Math Solver',
-            description: 'Solve mathematical problems and equations',
-            usage: 'Enter math problems for step-by-step solutions',
-            icon: '🔢',
-            category: 'Education'
-        }
     ];
 
     const handleTabChange = (_event: React.SyntheticEvent, newValue: number) => {
@@ -82,8 +58,8 @@ const GptView: React.FC = () => {
                     pl: 2
                 }}
             >
-                <Tab label="GPT Chat" />
-                <Tab label="AI Tools" />
+                <Tab label="AI问答助手" />
+                <Tab label="AI工具" />
             </Tabs>
             
             <Box sx={{ flex: 1, overflow: 'hidden' }}>
@@ -102,7 +78,7 @@ const GptView: React.FC = () => {
                 {activeTab === 1 && (
                     <Box sx={{ p: 3, overflow: 'auto', height: '100%' }}>
                         <Typography variant="h4" sx={{ mb: 3 }}>
-                            AI Tools
+                            AI工具
                         </Typography>
                         <Grid container spacing={3} sx={{ maxWidth: 1200, mx: 'auto' }}>
                             {aiTools.map((tool) => (

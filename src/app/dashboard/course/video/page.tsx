@@ -1,6 +1,6 @@
 'use client'
 import { CourseVideoView } from "src/sections/course/view/course-video-view"
 
-export function Page() {
+export default function Page() {
   return <CourseVideoView />;
 }   

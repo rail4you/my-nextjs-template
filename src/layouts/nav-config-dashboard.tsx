@@ -73,7 +73,7 @@ export const navData: NavSectionProps['data'] = [
       { title: '课程概述', path: paths.dashboard.course, icon: ICONS.dashboard },
       { title: '图谱汇总', path: paths.dashboard.graphLayer, icon: ICONS.dashboard },
       { title: '课程视频', path: paths.dashboard.courseVideo, icon: ICONS.dashboard },
-      { title: '课程汇总', path: paths.dashboard.courseSummary, icon: ICONS.dashboard },
+      { title: '课程汇总', path: paths.dashboard.resource, icon: ICONS.dashboard },
       { title: '课程图谱', path: paths.dashboard.graph, icon: ICONS.dashboard },
       { title: '图谱框架', path: paths.dashboard.courseCategory, icon: ICONS.dashboard },
       { title: '知识点', path: paths.dashboard.knowledge, icon: ICONS.dashboard },
