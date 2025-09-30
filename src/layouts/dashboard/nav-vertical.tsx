@@ -42,9 +42,16 @@ export function NavVertical({
   const renderNavVertical = () => (
     <>
       {slots?.topArea ?? (
-        <Box sx={{ pl: 3.5, pt: 2.5, pb: 1 }}>
-          <Logo />
+        <>
+        <Box sx={{ display: 'flex', alignItems: 'center', pl: 3.5, pt: 2.5, pb: 1 }}>
+          <Box sx={{ mr: 2 }}>
+            <Logo />
+          </Box>
+          <Box>
+            知识图谱智慧教学系统
+          </Box>
         </Box>
+        </>
       )}
 
       <Scrollbar fillContent>

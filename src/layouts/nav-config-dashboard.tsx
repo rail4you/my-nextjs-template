@@ -7,6 +7,7 @@ import { CONFIG } from 'src/global-config';
 import { Label } from 'src/components/label';
 import { Iconify } from 'src/components/iconify';
 import { SvgColor } from 'src/components/svg-color';
+import { Icon } from '@mui/material';
 
 // ----------------------------------------------------------------------
 
@@ -68,17 +69,17 @@ export const navData: NavSectionProps['data'] = [
   {
     subheader: '学习模块',
     items: [
-      { title: '课程概览', path: paths.dashboard.intro, icon: ICONS.dashboard },
-      { title: '教师团队', path: paths.dashboard.teacher, icon: ICONS.dashboard },
-      { title: '课程概述', path: paths.dashboard.course, icon: ICONS.dashboard },
-      { title: '图谱汇总', path: paths.dashboard.graphLayer, icon: ICONS.dashboard },
-      { title: '课程视频', path: paths.dashboard.courseVideo, icon: ICONS.dashboard },
-      { title: '课程汇总', path: paths.dashboard.resource, icon: ICONS.dashboard },
-      { title: '课程图谱', path: paths.dashboard.graph, icon: ICONS.dashboard },
-      { title: '图谱框架', path: paths.dashboard.courseCategory, icon: ICONS.dashboard },
-      { title: '知识点', path: paths.dashboard.knowledge, icon: ICONS.dashboard },
-      { title: '教学资源', path: paths.dashboard.resource, icon: ICONS.dashboard },
-      { title: '智能助手', path: paths.dashboard.gpt, icon: ICONS.dashboard },
+      { title: '课程概览', path: paths.dashboard.intro, icon: <Iconify icon="solar:home-smile-bold-duotone" width={24} /> },
+      { title: '教师团队', path: paths.dashboard.teacher, icon: <Iconify icon="solar:users-group-rounded-bold-duotone" width={24} /> },
+      { title: '课程概述', path: paths.dashboard.course, icon: ICONS.course },
+      { title: '图谱汇总', path: paths.dashboard.graphLayer, icon: <Iconify icon="solar:layers-minimalistic-bold-duotone" width={24} /> },
+      { title: '课程视频', path: paths.dashboard.courseVideo, icon: <Iconify icon="solar:videocamera-record-bold-duotone" width={24} /> },
+      { title: '课程汇总', path: paths.dashboard.resource, icon: ICONS.folder },
+      { title: '课程图谱', path: paths.dashboard.graph, icon: <Iconify icon="solar:share-bold-duotone" width={24} /> },
+      { title: '图谱框架', path: paths.dashboard.courseCategory, icon: <Iconify icon="solar:bookmark-square-bold-duotone" width={24} /> },
+      { title: '知识点', path: paths.dashboard.knowledge, icon: ICONS.booking },
+      { title: '教学资源', path: paths.dashboard.resource, icon: <Iconify icon="solar:library-bold-duotone" width={24} /> },
+      { title: '智能助手', path: paths.dashboard.gpt, icon: <Iconify icon="solar:chat-dots-bold-duotone" width={24} /> },
       // { title: '课程概览', path: paths.dashboard.root, icon: ICONS.dashboard },
       // { title: '课程', path: paths.dashboard.general.ecommerce, icon: ICONS.ecommerce },
       // { title: '分析', path: paths.dashboard.general.analytics, icon: ICONS.analytics },
@@ -92,102 +93,102 @@ export const navData: NavSectionProps['data'] = [
   /**
    * Management
    */
-  {
-    subheader: '管理模块',
-    items: [
-      {
-        title: '用户',
-        path: paths.dashboard.user.root,
-        icon: ICONS.user,
-        children: [
-          { title: 'Profile', path: paths.dashboard.user.root },
-          { title: 'Cards', path: paths.dashboard.user.cards },
-          { title: 'List', path: paths.dashboard.user.list },
-          { title: 'Create', path: paths.dashboard.user.new },
-          { title: 'Edit', path: paths.dashboard.user.demo.edit },
-          { title: 'Account', path: paths.dashboard.user.account, deepMatch: true },
-        ],
-      },
-      // {
-      //   title: 'Product',
-      //   path: paths.dashboard.product.root,
-      //   icon: ICONS.product,
-      //   children: [
-      //     { title: 'List', path: paths.dashboard.product.root },
-      //     { title: 'Details', path: paths.dashboard.product.demo.details },
-      //     { title: 'Create', path: paths.dashboard.product.new },
-      //     { title: 'Edit', path: paths.dashboard.product.demo.edit },
-      //   ],
-      // },
-      // {
-      //   title: 'Order',
-      //   path: paths.dashboard.order.root,
-      //   icon: ICONS.order,
-      //   children: [
-      //     { title: 'List', path: paths.dashboard.order.root },
-      //     { title: 'Details', path: paths.dashboard.order.demo.details },
-      //   ],
-      // },
-      // {
-      //   title: 'Invoice',
-      //   path: paths.dashboard.invoice.root,
-      //   icon: ICONS.invoice,
-      //   children: [
-      //     { title: 'List', path: paths.dashboard.invoice.root },
-      //     { title: 'Details', path: paths.dashboard.invoice.demo.details },
-      //     { title: 'Create', path: paths.dashboard.invoice.new },
-      //     { title: 'Edit', path: paths.dashboard.invoice.demo.edit },
-      //   ],
-      // },
-      // {
-      //   title: 'Blog',
-      //   path: paths.dashboard.post.root,
-      //   icon: ICONS.blog,
-      //   children: [
-      //     { title: 'List', path: paths.dashboard.post.root },
-      //     { title: 'Details', path: paths.dashboard.post.demo.details },
-      //     { title: 'Create', path: paths.dashboard.post.new },
-      //     { title: 'Edit', path: paths.dashboard.post.demo.edit },
-      //   ],
-      // },
-      // {
-      //   title: 'Job',
-      //   path: paths.dashboard.job.root,
-      //   icon: ICONS.job,
-      //   children: [
-      //     { title: 'List', path: paths.dashboard.job.root },
-      //     { title: 'Details', path: paths.dashboard.job.demo.details },
-      //     { title: 'Create', path: paths.dashboard.job.new },
-      //     { title: 'Edit', path: paths.dashboard.job.demo.edit },
-      //   ],
-      // },
-      // {
-      //   title: 'Tour',
-      //   path: paths.dashboard.tour.root,
-      //   icon: ICONS.tour,
-      //   children: [
-      //     { title: 'List', path: paths.dashboard.tour.root },
-      //     { title: 'Details', path: paths.dashboard.tour.demo.details },
-      //     { title: 'Create', path: paths.dashboard.tour.new },
-      //     { title: 'Edit', path: paths.dashboard.tour.demo.edit },
-      //   ],
-      // },
-      // { title: 'File manager', path: paths.dashboard.fileManager, icon: ICONS.folder },
-      // {
-      //   title: 'Mail',
-      //   path: paths.dashboard.mail,
-      //   icon: ICONS.mail,
-      //   info: (
-      //     <Label color="error" variant="inverted">
-      //       +32
-      //     </Label>
-      //   ),
-      // },
-      // { title: 'Chat', path: paths.dashboard.chat, icon: ICONS.chat },
-      // { title: 'Calendar', path: paths.dashboard.calendar, icon: ICONS.calendar },
-      // { title: 'Kanban', path: paths.dashboard.kanban, icon: ICONS.kanban },
-    ],
-  },
+  // {
+  //   subheader: '管理模块',
+  //   items: [
+  //     {
+  //       title: '用户',
+  //       path: paths.dashboard.user.root,
+  //       icon: ICONS.user,
+  //       children: [
+  //         { title: 'Profile', path: paths.dashboard.user.root },
+  //         { title: 'Cards', path: paths.dashboard.user.cards },
+  //         { title: 'List', path: paths.dashboard.user.list },
+  //         { title: 'Create', path: paths.dashboard.user.new },
+  //         { title: 'Edit', path: paths.dashboard.user.demo.edit },
+  //         { title: 'Account', path: paths.dashboard.user.account, deepMatch: true },
+  //       ],
+  //     },
+  //     // {
+  //     //   title: 'Product',
+  //     //   path: paths.dashboard.product.root,
+  //     //   icon: ICONS.product,
+  //     //   children: [
+  //     //     { title: 'List', path: paths.dashboard.product.root },
+  //     //     { title: 'Details', path: paths.dashboard.product.demo.details },
+  //     //     { title: 'Create', path: paths.dashboard.product.new },
+  //     //     { title: 'Edit', path: paths.dashboard.product.demo.edit },
+  //     //   ],
+  //     // },
+  //     // {
+  //     //   title: 'Order',
+  //     //   path: paths.dashboard.order.root,
+  //     //   icon: ICONS.order,
+  //     //   children: [
+  //     //     { title: 'List', path: paths.dashboard.order.root },
+  //     //     { title: 'Details', path: paths.dashboard.order.demo.details },
+  //     //   ],
+  //     // },
+  //     // {
+  //     //   title: 'Invoice',
+  //     //   path: paths.dashboard.invoice.root,
+  //     //   icon: ICONS.invoice,
+  //     //   children: [
+  //     //     { title: 'List', path: paths.dashboard.invoice.root },
+  //     //     { title: 'Details', path: paths.dashboard.invoice.demo.details },
+  //     //     { title: 'Create', path: paths.dashboard.invoice.new },
+  //     //     { title: 'Edit', path: paths.dashboard.invoice.demo.edit },
+  //     //   ],
+  //     // },
+  //     // {
+  //     //   title: 'Blog',
+  //     //   path: paths.dashboard.post.root,
+  //     //   icon: ICONS.blog,
+  //     //   children: [
+  //     //     { title: 'List', path: paths.dashboard.post.root },
+  //     //     { title: 'Details', path: paths.dashboard.post.demo.details },
+  //     //     { title: 'Create', path: paths.dashboard.post.new },
+  //     //     { title: 'Edit', path: paths.dashboard.post.demo.edit },
+  //     //   ],
+  //     // },
+  //     // {
+  //     //   title: 'Job',
+  //     //   path: paths.dashboard.job.root,
+  //     //   icon: ICONS.job,
+  //     //   children: [
+  //     //     { title: 'List', path: paths.dashboard.job.root },
+  //     //     { title: 'Details', path: paths.dashboard.job.demo.details },
+  //     //     { title: 'Create', path: paths.dashboard.job.new },
+  //     //     { title: 'Edit', path: paths.dashboard.job.demo.edit },
+  //     //   ],
+  //     // },
+  //     // {
+  //     //   title: 'Tour',
+  //     //   path: paths.dashboard.tour.root,
+  //     //   icon: ICONS.tour,
+  //     //   children: [
+  //     //     { title: 'List', path: paths.dashboard.tour.root },
+  //     //     { title: 'Details', path: paths.dashboard.tour.demo.details },
+  //     //     { title: 'Create', path: paths.dashboard.tour.new },
+  //     //     { title: 'Edit', path: paths.dashboard.tour.demo.edit },
+  //     //   ],
+  //     // },
+  //     // { title: 'File manager', path: paths.dashboard.fileManager, icon: ICONS.folder },
+  //     // {
+  //     //   title: 'Mail',
+  //     //   path: paths.dashboard.mail,
+  //     //   icon: ICONS.mail,
+  //     //   info: (
+  //     //     <Label color="error" variant="inverted">
+  //     //       +32
+  //     //     </Label>
+  //     //   ),
+  //     // },
+  //     // { title: 'Chat', path: paths.dashboard.chat, icon: ICONS.chat },
+  //     // { title: 'Calendar', path: paths.dashboard.calendar, icon: ICONS.calendar },
+  //     // { title: 'Kanban', path: paths.dashboard.kanban, icon: ICONS.kanban },
+  //   ],
+  // },
   /**
    * Item state
    */
